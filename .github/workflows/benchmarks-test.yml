@@ -1,0 +1,22 @@
+name: Benchmarks CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run-benchmarks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      # Add dependency installation if needed
+      # - name: Install dependencies
+      #   run: pip install -r requirements.txt
+      - name: Run latency tests
+        run: python latency_tests.py
